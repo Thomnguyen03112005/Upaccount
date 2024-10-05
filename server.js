@@ -5,14 +5,10 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public/admin')));
-
-app.use('/data', express.static(path.join(__dirname, 'data')));
 
 // API để lấy dữ liệu tài khoản từ tệp JSON
 app.get('/api/data', (req, res) => {
@@ -24,8 +20,8 @@ app.get('/api/data', (req, res) => {
     });
 });
 
-//API ACCOUNT
-app.get('/api/data', (req, res) => {
+// API ACCOUNT
+app.get('/api/account', (req, res) => {
     fs.readFile('./data/account.json', 'utf8', (err, data) => {
         if (err) {
             return res.status(500).send('Error reading file');
@@ -33,7 +29,6 @@ app.get('/api/data', (req, res) => {
         res.json(JSON.parse(data));
     });
 });
-
 
 // API để thêm tài khoản mới
 app.post('/api/data', (req, res) => {
@@ -121,7 +116,5 @@ app.get('/api/users/:id', (req, res) => {
     });
 });
 
-// Lắng nghe tại PORT
-app.listen(PORT, () => {
-    console.log(`Example app listening on port ${port}`)
-});
+// Xuất ứng dụng
+module.exports = app;
