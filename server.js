@@ -123,5 +123,5 @@ app.get('/api/users/:id', (req, res) => {
 
 // Lắng nghe tại PORT
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Example app listening on port ${port}`)
 });
